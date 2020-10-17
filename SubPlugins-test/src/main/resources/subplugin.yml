@@ -1,0 +1,3 @@
+name: SubPluginTest
+version: ${project.version}
+main: dev.floffah.subplugins.SubPluginTest

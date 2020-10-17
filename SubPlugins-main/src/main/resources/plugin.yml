@@ -1,0 +1,9 @@
+name: SubPlugins
+version: ${project.version}
+main: dev.floffah.subplugins.SubPlugins
+api-version: 1.16
+load: STARTUP
+depend: [ ProtocolLib ]
+authors: [ Floffah ]
+description: A plugin loader that runs its own plugins without giving direct access to precious server resources.
+website: https://discord.gg/Az8xDdU
