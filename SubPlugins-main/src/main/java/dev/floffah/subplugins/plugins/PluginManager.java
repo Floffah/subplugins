@@ -48,7 +48,7 @@ public class PluginManager {
                 e.printStackTrace();
             }
         }
-        urls[jars.size()] = getClass().getProtectionDomain().getCodeSource().getLocation();
+        //urls[jars.size()] = getClass().getProtectionDomain().getCodeSource().getLocation();
         childLoader = new URLClassLoader(urls, ClassLoader.getSystemClassLoader());
         Thread.currentThread().setContextClassLoader(childLoader);
         for(int i = 0; i < jars.size(); i++) {
@@ -100,6 +100,9 @@ public class PluginManager {
             try {
                 Class<?> uncheck = Class.forName(plugininfo.getMain(), true, childLoader);
                 Constructor cons = uncheck.getConstructor();
+                //Object plugin = cons.newInstance();
+                //System.out.println(plugin.getClass().equals(SubPlugin.class) + " is it equal");
+                //System.out.printf("%s | %s%n", plugin.getClass().getName(), plugin.getClass().getSuperclass().getName());
                 SubPlugin plugin = (SubPlugin) cons.newInstance();
                 plugin.setInf(plugininfo);
                 plugin.onLoad();

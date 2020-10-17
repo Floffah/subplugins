@@ -1,8 +1,10 @@
 package dev.floffah.subplugins.plugins;
 
-public class SubPlugin extends Plugin{
+public class SubPlugin {
+    private PluginInformation plinf;
+
     public SubPlugin() {
-        super();
+
     }
 
     public void onLoad() {
@@ -19,5 +21,13 @@ public class SubPlugin extends Plugin{
 
     public void onUnload() {
 
+    }
+
+    public void setInf(PluginInformation i) {
+        this.plinf = i;
+    }
+
+    public PluginInformation getInformation() {
+        return plinf;
     }
 }

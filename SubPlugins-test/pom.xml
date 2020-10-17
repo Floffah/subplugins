@@ -40,7 +40,6 @@
             <groupId>dev.floffah</groupId>
             <artifactId>SubPlugins-main</artifactId>
             <version>1.0.0</version>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>
