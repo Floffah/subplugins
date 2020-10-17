@@ -48,8 +48,9 @@ public class PluginManager {
                 e.printStackTrace();
             }
         }
-        //urls[jars.size()] = getClass().getProtectionDomain().getCodeSource().getLocation();
+        urls[jars.size()] = getClass().getProtectionDomain().getCodeSource().getLocation();
         childLoader = new URLClassLoader(urls, ClassLoader.getSystemClassLoader());
+        childLoader = new URLClassLoader(urls, PluginManager.class.getClassLoader());
         Thread.currentThread().setContextClassLoader(childLoader);
         for(int i = 0; i < jars.size(); i++) {
             try {
@@ -100,13 +101,11 @@ public class PluginManager {
             try {
                 Class<?> uncheck = Class.forName(plugininfo.getMain(), true, childLoader);
                 Constructor cons = uncheck.getConstructor();
-                //Object plugin = cons.newInstance();
-                //System.out.println(plugin.getClass().equals(SubPlugin.class) + " is it equal");
-                //System.out.printf("%s | %s%n", plugin.getClass().getName(), plugin.getClass().getSuperclass().getName());
                 SubPlugin plugin = (SubPlugin) cons.newInstance();
                 plugin.setInf(plugininfo);
                 plugin.onLoad();
                 plugins.put(plugin.getInformation().getName(), plugin);
+                return plugin;
             } catch(ClassNotFoundException e) {
                 throw new InvalidDescriptionException("main '" + plugininfo.getMain() + "' was not found in subplugin " + jar.getName());
             } /*catch(ClassCastException e) {
